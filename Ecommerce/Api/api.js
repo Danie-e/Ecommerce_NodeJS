@@ -24,11 +24,33 @@ router.route('/produtos').get((request, Response) => {
     });
 });
 
+router.route('/produtos/:id').get((request, response) => {
+    dboperations.getProduto(request.params.id).then(result => {
+        response.json(result[0]);
+    });
+});
+
+router.route('produtos').post((request, response) => {
+    let produto = { ...request.body }
+
+    dboperations.insertProduto().then(result => {
+        response.status(201).json(result);
+    });
+});
+
 router.route('produtos').patch((request, response) => {
     let produto = { ...request.body }
 
-    dboperations.updateProduto();
-})
+    dboperations.updateProduto().then(result => {
+        response.status(204).json(result);
+    });
+});
+
+router.route('/produtos/:id').delete((request, response) => {
+    dboperations.deleteProduto(request.params.id).then(result => {
+        response.json(result[0]);
+    });
+});
 
 
 var port = process.env.port || 8090;
