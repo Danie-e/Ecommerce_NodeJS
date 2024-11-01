@@ -33,5 +33,5 @@ router.route('produtos').patch((request, response) => {
 
 var port = process.env.port || 8090;
 app.listen(port);
-console.log('Api de Crros rodando na porta: ' + port);
+console.log('Api de produtos rodando na porta: ' + port);
 

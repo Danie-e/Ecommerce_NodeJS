@@ -12,6 +12,45 @@ async function getProdutos() {
     }
 };
 
+async function getProduto(carroId) {
+    try {
+        let pool = await sql.connect(config);
+        let lojas = await pool.request()
+            .input('input_parameter', sql.Int, carroId)
+            .query('SELECT * FROM Produto WHERE Codigo = @input_parameter')
+        return lojas.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
+async function insertProduto(produto) {
+    try {
+        let pool = await sql.connect(config);
+        let lojas = await pool.request()
+            .query(`INSERT INTO Produto
+            SET
+            (
+                [Preco], [Descricao], [Estoque], [Avaliacao], [Categoria], [Imagem]
+            )
+            VALUES
+            (
+                '${produto.Preco}',
+                '${produto.Descricao}',
+                '${produto.Estoque}',
+                '${produto.Avaliacao}',
+                '${produto.Categoria}',
+                '${produto.Imagem}',
+            )`);
+        return lojas.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
+
 async function updateProduto(produto) {
     try {
         let pool = await sql.connect(config);
@@ -33,9 +72,26 @@ async function updateProduto(produto) {
     catch (error) {
         console.log(error);
     }
-}
+};
+
+async function deleteProduto(produtoId) {
+    try {
+        let pool = await sql.connect(config);
+        let lojas = await pool.request()
+            .input('input_parameter', sql.Int, produtoId)
+            .query('DELETE FROM Produto WHERE Codigo = @input_parameter');
+        return lojas.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+};
+
 
 module.exports = {
     getProdutos: getProdutos,
-    updateProduto: updateProduto
+    getProduto: getProduto,
+    insertProduto: insertProduto,
+    updateProduto: updateProduto,
+    deleteProduto: deleteProduto
 }
