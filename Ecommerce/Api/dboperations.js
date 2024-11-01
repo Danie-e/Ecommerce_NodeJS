@@ -10,8 +10,32 @@ async function getProdutos() {
     catch (error) {
         console.log(error);
     }
+};
+
+async function updateProduto(produto) {
+    try {
+        let pool = await sql.connect(config);
+        let loja = await pool.request()
+            .input('input_parameter', sql.Int, produto.id)
+            .query(`
+            UPDATE [dbo].[Produto]
+            SET
+            [Preco] = '${produto.Preco}'
+            [Descricao] = '${produto.Descricao}'
+            [Estoque] = '${produto.Estoque}'
+            [Avaliacao] = '${produto.Avaliacao}'
+            [Categoria] = '${produto.Categoria}'
+            [Imagem] = '${produto.Imagem}'
+            WHERE Codigo - @input_parameter
+            `);
+        return loja.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports = {
-    getProdutos: getProdutos
+    getProdutos: getProdutos,
+    updateProduto: updateProduto
 }

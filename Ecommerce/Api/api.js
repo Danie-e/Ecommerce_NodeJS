@@ -24,6 +24,12 @@ router.route('/produtos').get((request, Response) => {
     });
 });
 
+router.route('produtos').patch((request, response) => {
+    let produto = { ...request.body }
+
+    dboperations.updateProduto();
+})
+
 
 var port = process.env.port || 8090;
 app.listen(port);
