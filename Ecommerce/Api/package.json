@@ -1,0 +1,22 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Aplicação desenvolvida para a atividade 'Criando API com Node.Js' da matéria Tecnologias para Análise e Desenvolvimento de Sistemas - G1/T1 - 4ºP/40H - 2024/2.",
+  "main": "index.js",
+  "author": "Daniela Eloisa Oliveira Gonçalves - 1453344",
+  "scripts": {
+    "test": "echo \"Error: no test especified\" && exit 1",
+    "start": "nodemon api.js"
+  },
+  "dependencies": {
+    "cors": "2.8.5",
+    "express": "5.0.1",
+    "mssql": "11.0.1",
+    "body-parser": "2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.7"
+  },
+  "license": "ISC",
+  "keywords": []
+}
