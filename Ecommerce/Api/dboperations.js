@@ -30,18 +30,19 @@ async function insertProduto(produto) {
         let pool = await sql.connect(config);
         let lojas = await pool.request()
             .query(`INSERT INTO Produto
-            SET
             (
-                [Preco], [Descricao], [Estoque], [Avaliacao], [Categoria], [Imagem]
+              [Codigo], [Nome], [Preco], [Descricao], [Estoque], [Avaliacao], [Categoria], [Imagem]
             )
             VALUES
             (
+                '${produto.Codigo}',
+                '${produto.Nome}',
                 '${produto.Preco}',
                 '${produto.Descricao}',
                 '${produto.Estoque}',
                 '${produto.Avaliacao}',
                 '${produto.Categoria}',
-                '${produto.Imagem}',
+                '${produto.Imagem}'
             )`);
         return lojas.recordsets;
     }
@@ -55,17 +56,18 @@ async function updateProduto(produto) {
     try {
         let pool = await sql.connect(config);
         let loja = await pool.request()
-            .input('input_parameter', sql.Int, produto.id)
+            .input('input_parameter', sql.Int, produto.Codigo)
             .query(`
-            UPDATE [dbo].[Produto]
+            UPDATE Produto
             SET
-            [Preco] = '${produto.Preco}'
-            [Descricao] = '${produto.Descricao}'
-            [Estoque] = '${produto.Estoque}'
-            [Avaliacao] = '${produto.Avaliacao}'
-            [Categoria] = '${produto.Categoria}'
+            [Nome] = '${produto.Nome}',
+            [Preco] = '${produto.Preco}',
+            [Descricao] = '${produto.Descricao}',
+            [Estoque] = '${produto.Estoque}',
+            [Avaliacao] = '${produto.Avaliacao}',
+            [Categoria] = '${produto.Categoria}',
             [Imagem] = '${produto.Imagem}'
-            WHERE Codigo - @input_parameter
+            WHERE Codigo = @input_parameter
             `);
         return loja.recordsets;
     }
