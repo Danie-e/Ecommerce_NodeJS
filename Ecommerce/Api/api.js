@@ -24,13 +24,13 @@ router.route('/produtos').get((request, Response) => {
     });
 });
 
-router.route('/produto/:id').get((request, response) => {
+router.route('/produtos/:id').get((request, response) => {
     dboperations.getProduto(request.params.id).then(result => {
         response.json(result[0]);
     });
 });
 
-router.route('/produto').post((request, response) => {
+router.route('/produtos').post((request, response) => {
     let produto = { ...request.body }
 
     dboperations.insertProduto(produto).then(result => {
@@ -38,7 +38,7 @@ router.route('/produto').post((request, response) => {
     });
 });
 
-router.route('/produto').patch((request, response) => {
+router.route('/produtos').patch((request, response) => {
     let produto = { ...request.body }
 
     dboperations.updateProduto(produto).then(result => {
@@ -46,7 +46,7 @@ router.route('/produto').patch((request, response) => {
     });
 });
 
-router.route('/produto/:id').delete((request, response) => {
+router.route('/produtos/:id').delete((request, response) => {
     dboperations.deleteProduto(request.params.id).then(result => {
         response.json(result[0]);
     });
