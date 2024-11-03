@@ -1,0 +1,37 @@
+.titulo{
+    margin: 2%;
+    display: flex;
+    justify-content: center;
+font-weight: bold;
+}
+
+.imagem{
+    display: flex;
+    justify-self: center;
+}
+
+.descricao{
+        margin: 20px;
+}
+
+.informacoes{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.botoes{
+    padding-right: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.botaoModificar{
+    margin: 10px;
+    background-color: aqua;
+}
+
+.botaoExcluir{
+    margin: 10px;
+    background-color: red;
+}

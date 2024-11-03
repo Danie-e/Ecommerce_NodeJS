@@ -1,0 +1,9 @@
+.formulario{
+    display: inline-grid;
+    width: -webkit-fill-available;
+    margin: 1% 10%;
+}
+
+.formulario button{
+    margin-top: 10px;
+}

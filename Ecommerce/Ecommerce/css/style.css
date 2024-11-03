@@ -1,0 +1,16 @@
+body{
+    margin: 0%;
+}
+
+a{    
+    text-decoration: none;
+    color: black;
+}
+
+.header{
+    background-color: blue;
+    padding: 1%;
+    display: flex;
+    justify-content: space-between;
+}
+
